@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button.jsx";
 import "../css/Stitchbar.css";
+import { apiUrl } from "../api_url.js";
 
 const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generateRandomKey }) => {
   const [selectedStitches, setSelectedStitches] = useState([]);
@@ -11,7 +12,7 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
     if (clearConfirm) {
       console.log("confirmed clearing...");
       try {
-        const response = await fetch("http://127.0.0.1:5000/clear-chart", {
+        const response = await fetch(`${apiUrl}/clear-chart`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

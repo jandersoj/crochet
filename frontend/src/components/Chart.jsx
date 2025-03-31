@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/Chart.css";
 import Round from "./Round";
+import { apiUrl } from "../api_url.js";
 
 const Chart = ({ stitches, updateChart, rounds, setRounds, generateRandomKey }) => {
   const startingStitches = stitches;
@@ -11,7 +12,7 @@ const Chart = ({ stitches, updateChart, rounds, setRounds, generateRandomKey }) 
   const fetchChartData = async () => {
     console.log("fetchChartData called");
     try {
-      const response = await fetch("http://127.0.0.1:5000/get-chart-data");
+      const response = await fetch(`${apiUrl}/get-chart-data`);
       const data = await response.json();
       console.log("chart fetched", data);
       setRounds(data);

@@ -6,6 +6,7 @@ import TextDisplay from "./components/TextDisplay.jsx";
 import Popup from "./components/Popup.jsx";
 import { COLORS } from "./colors.jsx";
 import "./App.css";
+import { apiUrl } from "./api_url.js";
 
 // Import images
 import chImage from "./images/ch.jpg";
@@ -95,7 +96,7 @@ export default function App() {
 
     console.log("Submitting:", selectedStitches);
     try {
-      const response = await fetch("http://127.0.0.1:5000/submit-sequence", {
+      const response = await fetch(`${apiUrl}/submit-sequence`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
