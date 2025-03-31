@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+header {
+  margin: 0;
+  height: 9vh;
+}
+
+main {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  height: 90vh;
+}
+
+.Stitchbar {
+  flex: 1;
+  max-width: 20vw; /* Adjust the width as needed */
+  min-width: 20vw;
+}
+
+.Chart {
+  flex: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.TextDisplay {
+  flex: 1;
+  max-width: 20vw; /* Adjust the width as needed */
+  min-width: 20vw;
+}
+
+.getStartingSts {
+  display: flex;
+  height: auto;
+  width: auto;
+  padding: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.input-group input {
+  flex: 1;
+  max-width: 100px;
+}
+
+.input-group button {
+  margin-left: 10px;
+}
