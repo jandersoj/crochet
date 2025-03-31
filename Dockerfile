@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y \
 RUN pip install poetry
 COPY backend/pyproject.toml backend/poetry.lock ./
 RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+    && poetry install --no-root --no-interaction --no-ansi \
+    && poetry add gunicorn
 
 # Copy backend code
 COPY backend/ ./
@@ -33,4 +34,4 @@ COPY --from=frontend-build /app/dist ./dist
 EXPOSE ${PORT}
 
 # Start the application using the PORT environment variable
-CMD poetry run flask run --host 0.0.0.0 --port ${PORT:-8000}
+CMD poetry run gunicorn --bind 0.0.0.0:${PORT:-8000} app:app
