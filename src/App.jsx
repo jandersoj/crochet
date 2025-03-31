@@ -24,7 +24,17 @@ export default function App() {
     { id: "hdc", name: "Half Double Crochet", image: hdcImage, h: 2, w: 1 },
     { id: "dc", name: "Double Crochet", image: dcImage, h: 3, w: 1 },
     { id: "tr", name: "Treble Crochet", image: trImage, h: 4, w: 1 },
-    { id: "mr", name: "Magic Ring", image: mrImage, h: 1, w: 1 }, // Add the magic ring stitch
+    { id: "mr", name: "Magic Ring", image: mrImage, h: 1, w: 1 },
+
+    //temp stitches
+    { id: "t1", name: "T1", image: "https://picsum.photos/id/118/50/50", h: 1, w: 1 },
+    { id: "t2", name: "T2", image: "https://picsum.photos/id/119/50/50", h: 1, w: 1 },
+    { id: "t3", name: "T3", image: "https://picsum.photos/id/120/50/50", h: 1, w: 1 },
+    { id: "t4", name: "T4", image: "https://picsum.photos/id/121/50/50", h: 1, w: 1 },
+    { id: "t5", name: "T5", image: "https://picsum.photos/id/122/50/50", h: 1, w: 1 },
+    { id: "t6", name: "T6", image: "https://picsum.photos/id/123/50/50", h: 1, w: 1 },
+    { id: "t7", name: "T7", image: "https://picsum.photos/id/124/50/50", h: 1, w: 1 },
+    { id: "t8", name: "T8", image: "https://picsum.photos/id/125/50/50", h: 1, w: 1 },
   ];
 
   const [submitted, setSubmitted] = useState(false);
