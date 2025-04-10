@@ -17,26 +17,35 @@ import dcImage from "./images/dc.jpg";
 import trImage from "./images/tr.jpg";
 import mrImage from "./images/mr.png"; // Import the magic ring image
 
-export default function App() {
-  const initialStitches = [
-    { id: "ch", name: "Chain", image: chImage, h: 1, w: 1 },
-    { id: "slst", name: "Slip Stitch", image: slstImage, h: 0, w: 1 },
-    { id: "sc", name: "Single Crochet", image: scImage, h: 1, w: 1 },
-    { id: "hdc", name: "Half Double Crochet", image: hdcImage, h: 2, w: 1 },
-    { id: "dc", name: "Double Crochet", image: dcImage, h: 3, w: 1 },
-    { id: "tr", name: "Treble Crochet", image: trImage, h: 4, w: 1 },
-    { id: "mr", name: "Magic Ring", image: mrImage, h: 1, w: 1 },
+export const initialStitches = [
+  { id: "ch", name: "Chain", image: chImage, h: 1, w: 1 },
+  { id: "slst", name: "Slip Stitch", image: slstImage, h: 0, w: 1 },
+  { id: "sc", name: "Single Crochet", image: scImage, h: 1, w: 1 },
+  { id: "hdc", name: "Half Double Crochet", image: hdcImage, h: 2, w: 1 },
+  { id: "dc", name: "Double Crochet", image: dcImage, h: 3, w: 1 },
+  { id: "tr", name: "Treble Crochet", image: trImage, h: 4, w: 1 },
+  { id: "mr", name: "Magic Ring", image: mrImage, h: 1, w: 1 },
 
-    //temp stitches
-    { id: "t1", name: "T1", image: "https://picsum.photos/id/118/50/50", h: 1, w: 1 },
-    { id: "t2", name: "T2", image: "https://picsum.photos/id/119/50/50", h: 1, w: 1 },
-    { id: "t3", name: "T3", image: "https://picsum.photos/id/120/50/50", h: 1, w: 1 },
-    { id: "t4", name: "T4", image: "https://picsum.photos/id/121/50/50", h: 1, w: 1 },
-    { id: "t5", name: "T5", image: "https://picsum.photos/id/122/50/50", h: 1, w: 1 },
-    { id: "t6", name: "T6", image: "https://picsum.photos/id/123/50/50", h: 1, w: 1 },
-    { id: "t7", name: "T7", image: "https://picsum.photos/id/124/50/50", h: 1, w: 1 },
-    { id: "t8", name: "T8", image: "https://picsum.photos/id/125/50/50", h: 1, w: 1 },
-  ];
+  //temp stitches
+  { id: "t1", name: "T1", image: "https://picsum.photos/id/118/50/50", h: 1, w: 1 },
+  { id: "t2", name: "T2", image: "https://picsum.photos/id/119/50/50", h: 1, w: 1 },
+  { id: "t3", name: "T3", image: "https://picsum.photos/id/120/50/50", h: 1, w: 1 },
+  { id: "t4", name: "T4", image: "https://picsum.photos/id/121/50/50", h: 1, w: 1 },
+  { id: "t5", name: "T5", image: "https://picsum.photos/id/122/50/50", h: 1, w: 1 },
+  { id: "t6", name: "T6", image: "https://picsum.photos/id/123/50/50", h: 1, w: 1 },
+  { id: "t7", name: "T7", image: "https://picsum.photos/id/124/50/50", h: 1, w: 1 },
+  { id: "t8", name: "T8", image: "https://picsum.photos/id/125/50/50", h: 1, w: 1 },
+];
+
+export const generateRandomKey = () => {
+  return Math.random().toString(36).substring(2, 12);
+};
+
+//probably almost definitely in fact i'm not supposed to do this
+//out here but josie stays winning
+
+export default function App() {
+  //previously had the initial stitches here but wanted to export
 
   const [submitted, setSubmitted] = useState(false);
   const [rounds, setRounds] = useState([]);
@@ -63,10 +72,6 @@ export default function App() {
     setSubmitted(true);
     setUpdateChart((prev) => !prev); // Trigger chart update
     setRoundCount(1); // Initialize round count to 1
-  };
-
-  const generateRandomKey = () => {
-    return Math.random().toString(36).substring(2, 12);
   };
 
   const handleGenerateRound = () => {
@@ -131,14 +136,14 @@ export default function App() {
 
         {!submitted ? (
           <section className="Setup">
-            <Popup stitches={initialStitches} generateRandomKey={generateRandomKey} />
+            {/* <Popup stitches={initialStitches} generateRandomKey={generateRandomKey} /> */}
             {/* //TEMPORARYYYY */}
             <div className="Instructions">
-              <h2>Instructions r here </h2>
+              <h2>Instructions will be here </h2>
             </div>
             <div className="getStartingSts">
               <form onSubmit={handleStartingSts}>
-                <label>Please choose the number of starting stitches or select Magic Ring:</label>
+                <label>Please choose the number of starting stitches:</label>
                 <div className="input-group">
                   <input
                     type="radio"
