@@ -13,7 +13,7 @@ const calculateCirclePositions = (count, radius) => {
   });
 };
 
-const Round = ({ round, roundIndex, generateRandomKey }) => {
+const Round = ({ round, roundIndex, generateRandomKey, setRounds }) => {
   const roundRef = useRef(null);
 
   const positions = calculateCirclePositions(round.stitches.length, 50 + roundIndex * 50);
@@ -32,6 +32,7 @@ const Round = ({ round, roundIndex, generateRandomKey }) => {
             stitchAngle={angle}
             roundIndex={roundIndex}
             stitchIndex={idx}
+            setRounds={setRounds}
           />
         );
       })}

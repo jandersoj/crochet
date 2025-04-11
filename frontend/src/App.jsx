@@ -18,23 +18,19 @@ import trImage from "./images/tr.jpg";
 import mrImage from "./images/mr.png"; // Import the magic ring image
 
 export const initialStitches = [
-  { id: "ch", name: "Chain", image: chImage, h: 1, w: 1 },
-  { id: "slst", name: "Slip Stitch", image: slstImage, h: 0, w: 1 },
-  { id: "sc", name: "Single Crochet", image: scImage, h: 1, w: 1 },
-  { id: "hdc", name: "Half Double Crochet", image: hdcImage, h: 2, w: 1 },
-  { id: "dc", name: "Double Crochet", image: dcImage, h: 3, w: 1 },
-  { id: "tr", name: "Treble Crochet", image: trImage, h: 4, w: 1 },
-  { id: "mr", name: "Magic Ring", image: mrImage, h: 1, w: 1 },
+  { id: "ch", name: "Chain", image: chImage },
+  { id: "slst", name: "Slip Stitch", image: slstImage },
+  { id: "sc", name: "Single Crochet", image: scImage },
+  { id: "hdc", name: "Half Double Crochet", image: hdcImage },
+  { id: "dc", name: "Double Crochet", image: dcImage },
+  { id: "tr", name: "Treble Crochet", image: trImage },
+  { id: "mr", name: "Magic Ring", image: mrImage },
 
   //temp stitches
-  { id: "t1", name: "T1", image: "https://picsum.photos/id/118/50/50", h: 1, w: 1 },
-  { id: "t2", name: "T2", image: "https://picsum.photos/id/119/50/50", h: 1, w: 1 },
-  { id: "t3", name: "T3", image: "https://picsum.photos/id/120/50/50", h: 1, w: 1 },
-  { id: "t4", name: "T4", image: "https://picsum.photos/id/121/50/50", h: 1, w: 1 },
-  { id: "t5", name: "T5", image: "https://picsum.photos/id/122/50/50", h: 1, w: 1 },
-  { id: "t6", name: "T6", image: "https://picsum.photos/id/123/50/50", h: 1, w: 1 },
-  { id: "t7", name: "T7", image: "https://picsum.photos/id/124/50/50", h: 1, w: 1 },
-  { id: "t8", name: "T8", image: "https://picsum.photos/id/125/50/50", h: 1, w: 1 },
+  { id: "t1", name: "T1", image: "https://picsum.photos/id/182/50/50" },
+  { id: "t2", name: "T2", image: "https://picsum.photos/id/118/50/50" },
+  { id: "t3", name: "T3", image: "https://picsum.photos/id/114/50/50" },
+  { id: "t4", name: "T4", image: "https://picsum.photos/id/152/50/50" },
 ];
 
 export const generateRandomKey = () => {

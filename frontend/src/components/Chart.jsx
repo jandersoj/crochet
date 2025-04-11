@@ -24,7 +24,13 @@ const Chart = ({ stitches, updateChart, rounds, setRounds, generateRandomKey }) 
   return (
     <div className="chart">
       {rounds.map((round, idx) => (
-        <Round key={generateRandomKey()} round={round} roundIndex={idx} generateRandomKey={generateRandomKey} />
+        <Round
+          key={generateRandomKey()}
+          round={round}
+          roundIndex={idx}
+          generateRandomKey={generateRandomKey}
+          setRounds={setRounds}
+        />
       ))}
     </div>
   );

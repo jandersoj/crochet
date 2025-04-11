@@ -6,14 +6,14 @@ const TextDisplay = ({ updateChart, generateRandomKey }) => {
 
   useEffect(() => {
     const fetchChartData = async () => {
-      console.log("fetchChartData called");
+      // console.log("fetchChartData called");
       try {
         const response = await fetch(`${apiUrl}/get-chart-data`);
         const data = await response.json();
-        console.log("chart fetched", data);
+        // console.log("chart fetched", data);
         setRounds(data);
       } catch (error) {
-        console.error("Error fetching chart data:", error);
+        // console.error("Error fetching chart data:", error);
       }
     };
 
