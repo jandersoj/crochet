@@ -60,8 +60,8 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
     <>
       <div className="creation-buttons">
         <Button onClick={handleClearAll}>Clear all</Button>
-        <Button onClick={() => console.log("undo button clicked")}>Undo</Button>
-        <Button onClick={() => console.log("redo button clicked")}>Redo</Button>
+        {/* <Button onClick={() => console.log("undo button clicked")}>Undo</Button>
+        <Button onClick={() => console.log("redo button clicked")}>Redo</Button> */}
         <Button onClick={handleClearSelection}>Clear selection</Button>
       </div>
 

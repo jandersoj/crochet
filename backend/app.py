@@ -23,6 +23,35 @@ def add_chart_data(data):
     print("Current chart_data:", chart_data, "\n")
     # chart_indices += 1
 
+def update_stitch(stitch_id, round_index, stitch_index, new_stitch):
+
+    chart_data[round_index][stitch_index] = new_stitch
+
+
+@app.route('/update-stitch', methods=['POST'])
+def update_stitch():
+    
+        # Parse the JSON data from the request
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "No JSON data provided"}), 400
+
+        print("Received data:", data)
+
+        # Example: Update the chart_data (you can modify this logic as needed)
+        stitch_id = data.get("stitchId")
+        round_index = data.get("roundIndex")
+        stitch_index = data.get("stitchIndex")
+        new_stitch = data.get("newStitch")
+
+        if stitch_id is None or round_index is None or stitch_index is None or new_stitch is None:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # Update the chart_data (assuming chart_data is structured as a list of rounds)
+        
+        print("Updated chart_data:", chart_data)
+        return jsonify({"message": "Stitch updated successfully"}), 200
+
 @app.route('/submit-sequence', methods=['POST'])
 def submit_sequence():
     data = request.get_json()

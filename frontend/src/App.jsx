@@ -52,7 +52,7 @@ export default function App() {
   const [roundCount, setRoundCount] = useState(0); // State to track the number of rounds
   const [inputValue, setInputValue] = useState("");
   const [selectedStitch, setSelectedStitch] = useState(null);
-  const [startingSts, setStartingSts] = useState(0);
+  const [startingSts, setStartingSts] = useState(6); //temp
   const [selectedOption, setSelectedOption] = useState("stitches"); // State to track the selected option
   const [updateChart, setUpdateChart] = useState(false); // State to trigger chart update
 
@@ -134,34 +134,32 @@ export default function App() {
           />
         </div>
 
-        {!submitted ? (
-          <section className="Setup">
-            {/* <Popup stitches={initialStitches} generateRandomKey={generateRandomKey} /> */}
-            {/* //TEMPORARYYYY */}
-            <div className="Instructions">
-              <h2>Instructions will be here </h2>
-            </div>
-            <div className="getStartingSts">
-              <form onSubmit={handleStartingSts}>
-                <label>Please choose the number of starting stitches:</label>
-                <div className="input-group">
-                  <input
-                    type="radio"
-                    id="stitches"
-                    name="startingOption"
-                    value="stitches"
-                    checked={selectedOption === "stitches"}
-                    onChange={(e) => setSelectedOption(e.target.value)}
-                  />
-                  <label htmlFor="stitches">Number of starting stitches:</label>
-                  <input
-                    type="number"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    disabled={selectedOption !== "stitches"}
-                    required={selectedOption === "stitches"}
-                  />
-                  {/* <input
+        {/* {!submitted ? ( */}
+        {/* <section className="Setup">
+          <div className="Instructions">
+            <h2>Instructions will be here </h2>
+          </div>
+          <div className="getStartingSts">
+            <form onSubmit={handleStartingSts}>
+              <label>Please choose the number of starting stitches:</label>
+              <div className="input-group">
+                <input
+                  type="radio"
+                  id="stitches"
+                  name="startingOption"
+                  value="stitches"
+                  checked={selectedOption === "stitches"}
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                />
+                <label htmlFor="stitches">Number of starting stitches:</label>
+                <input
+                  type="number"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  disabled={selectedOption !== "stitches"}
+                  required={selectedOption === "stitches"}
+                /> */}
+        {/* <input
                     type="radio"
                     id="magicRing"
                     name="startingOption"
@@ -170,24 +168,24 @@ export default function App() {
                     onChange={(e) => setSelectedOption(e.target.value)}
                   />
                   <label htmlFor="magicRing">Magic ring</label> */}
-                  <button type="submit">Save</button>
-                </div>
-              </form>
-            </div>
-          </section>
-        ) : (
-          <>
-            <div className="Chart">
-              <Chart
-                stitches={initialStitches}
-                updateChart={updateChart}
-                rounds={rounds}
-                setRounds={setRounds}
-                generateRandomKey={generateRandomKey}
-              />
-            </div>
-          </>
-        )}
+        {/* <button type="submit">Save</button>
+              </div>
+            </form>
+          </div>
+        </section> */}
+        {/* ) : ( */}
+        <>
+          <div className="Chart">
+            <Chart
+              stitches={initialStitches}
+              updateChart={updateChart}
+              rounds={rounds}
+              setRounds={setRounds}
+              generateRandomKey={generateRandomKey}
+            />
+          </div>
+        </>
+        {/* )} */}
         <div className="TextDisplay">
           <TextDisplay updateChart={updateChart} generateRandomKey={generateRandomKey} rounds={rounds} />
         </div>

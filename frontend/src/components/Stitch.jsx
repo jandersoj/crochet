@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import Popup from "./Popup";
 
-const Stitch = ({ id, imageurl, name, stitchX, stitchY, stitchAngle }) => {
+const Stitch = ({ id, imageurl, name, stitchX, stitchY, stitchAngle, roundIndex, stitchIndex }) => {
   const [popup, setPopup] = useState({ visible: false, x: 0, y: 0 });
+  const [stitchClicked, setStitchClicked] = useState({
+    stitchId: id,
+    stitchIndex: stitchIndex,
+    roundIndex: roundIndex,
+  });
 
   const handleClick = () => {
     setPopup({
@@ -51,6 +56,7 @@ const Stitch = ({ id, imageurl, name, stitchX, stitchY, stitchAngle }) => {
             zIndex: 1000, // Ensure it appears above other components
           }}
           onClose={closePopup} // Pass the close function
+          stitchClicked={stitchClicked} // Pass the stitch ID to the Popup
         />
       )}
     </>

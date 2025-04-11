@@ -30,6 +30,8 @@ const Round = ({ round, roundIndex, generateRandomKey }) => {
             stitchX={x}
             stitchY={y}
             stitchAngle={angle}
+            roundIndex={roundIndex}
+            stitchIndex={idx}
           />
         );
       })}
