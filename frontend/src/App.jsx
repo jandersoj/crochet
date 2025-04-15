@@ -1,70 +1,84 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Header from "./components/Header.jsx";
 import Stitchbar from "./components/Stitchbar.jsx";
 import Chart from "./components/Chart.jsx";
 import TextDisplay from "./components/TextDisplay.jsx";
-import Popup from "./components/Popup.jsx";
-import { COLORS } from "./colors.jsx";
 import "./App.css";
 import { apiUrl } from "./api_url.js";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+//stitch images:
 
-// Import images
-import chImage from "./images/ch.jpg";
-import slstImage from "./images/slst.jpg";
-import scImage from "./images/sc.jpg";
-import hdcImage from "./images/hdc.jpg";
-import dcImage from "./images/dc.jpg";
-import trImage from "./images/tr.jpg";
-import mrImage from "./images/mr.png"; // Import the magic ring image
+import twodcinoneImage from "./images/2dcin1.png";
+import twohdcinoneImage from "./images/2hdcin1.png";
+import threedcinoneImage from "./images/3dcin1.png";
+import bobbleImage from "./images/bobble.png";
+import chslstImage from "./images/ch-slst.png";
+import chImage from "./images/ch.png";
+import ch1upImage from "./images/ch1up.png";
+import ch2upImage from "./images/ch2up.png";
+import ch3upImage from "./images/ch3up.png";
+import dcImage from "./images/dc.png";
+import hdcImage from "./images/hdc.png";
+import picotImage from "./images/picot.png";
+import popcornImage from "./images/popcorn.png";
+import puffImage from "./images/puff.png";
+import scImage from "./images/sc.png";
+import slstImage from "./images/slst.png";
+import trImage from "./images/tr.png";
+import blankImage from "./images/blank.png";
 
 export const initialStitches = [
-  { id: "ch", name: "Chain", image: chImage },
+  //construction stitches
+  { id: "ch1up", name: "Chain 1 Up", image: ch1upImage },
+  { id: "ch2up", name: "Chain 2 Up", image: ch2upImage },
+  { id: "ch3up", name: "Chain 3 Up", image: ch3upImage },
+  { id: "chslst", name: "Chain + Slip Stitch", image: chslstImage },
+  { id: "skip", name: "Skip", image: blankImage },
+
+  //basic stitches
   { id: "slst", name: "Slip Stitch", image: slstImage },
+  { id: "ch", name: "Chain", image: chImage },
   { id: "sc", name: "Single Crochet", image: scImage },
   { id: "hdc", name: "Half Double Crochet", image: hdcImage },
   { id: "dc", name: "Double Crochet", image: dcImage },
   { id: "tr", name: "Treble Crochet", image: trImage },
-  { id: "mr", name: "Magic Ring", image: mrImage },
 
-  //temp stitches
-  { id: "t1", name: "T1", image: "https://picsum.photos/id/182/50/50" },
-  { id: "t2", name: "T2", image: "https://picsum.photos/id/118/50/50" },
-  { id: "t3", name: "T3", image: "https://picsum.photos/id/114/50/50" },
-  { id: "t4", name: "T4", image: "https://picsum.photos/id/152/50/50" },
+  //big stitches
+  { id: "2dcin1", name: "2 Double Crochet in 1", image: twodcinoneImage },
+  { id: "2hdcin1", name: "2 Half Double Crochet in 1", image: twohdcinoneImage },
+  { id: "3dcin1", name: "3 Double Crochet in 1", image: threedcinoneImage },
+
+  //decorative stitches
+  { id: "bobble", name: "Bobble", image: bobbleImage },
+  { id: "popcorn", name: "Popcorn", image: popcornImage },
+  { id: "puff", name: "Puff Stitch", image: puffImage },
+  { id: "picot", name: "Picot", image: picotImage },
 ];
 
 export const generateRandomKey = () => {
   return Math.random().toString(36).substring(2, 12);
 };
 
-//probably almost definitely in fact i'm not supposed to do this
-//out here but josie stays winning
-
 export default function App() {
   //previously had the initial stitches here but wanted to export
 
   const [submitted, setSubmitted] = useState(false);
   const [rounds, setRounds] = useState([]);
-  const [roundCount, setRoundCount] = useState(0); // State to track the number of rounds
+  const [roundCount, setRoundCount] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [selectedStitch, setSelectedStitch] = useState(null);
-  const [startingSts, setStartingSts] = useState(6); //temp
-  const [selectedOption, setSelectedOption] = useState("stitches"); // State to track the selected option
+  const [startingSts, setStartingSts] = useState([]); //temp
   const [updateChart, setUpdateChart] = useState(false); // State to trigger chart update
 
   const handleStartingSts = async (event) => {
     event.preventDefault();
-    if (selectedOption === "stitches") {
-      const numChains = parseInt(inputValue, 10);
-      const chainStitches = Array(numChains).fill({ id: "ch", name: "Chain", image: chImage, h: 1, w: 1 });
-      setRounds([{ stitches: chainStitches }]);
-      await handleSubmit(chainStitches);
-      setStartingSts(numChains);
-      // } else if (selectedOption === "magicRing") {
-      //   const magicRingStitch = [{ id: "mr", name: "Magic Ring", image: mrImage, h: 1, w: 1 }];
-      //   setRounds([{ stitches: magicRingStitch }]);
-      //   await handleSubmit(magicRingStitch);
-    }
+    const numChains = parseInt(inputValue, 10);
+    const chainStitches = Array(numChains).fill({ id: "ch", name: "Chain", image: chImage, h: 1, w: 1 });
+    setRounds([{ stitches: chainStitches }]);
+    await handleSubmit(chainStitches);
+    setStartingSts(numChains);
+
     setSubmitted(true);
     setUpdateChart((prev) => !prev); // Trigger chart update
     setRoundCount(1); // Initialize round count to 1
@@ -118,7 +132,7 @@ export default function App() {
       <header>
         <Header />
       </header>
-      <main style={{ background: COLORS.light }}>
+      <main>
         <div className="Stitchbar">
           <Stitchbar
             stitches={initialStitches}
@@ -130,58 +144,40 @@ export default function App() {
           />
         </div>
 
-        {/* {!submitted ? ( */}
-        {/* <section className="Setup">
-          <div className="Instructions">
-            <h2>Instructions will be here </h2>
-          </div>
-          <div className="getStartingSts">
-            <form onSubmit={handleStartingSts}>
-              <label>Please choose the number of starting stitches:</label>
-              <div className="input-group">
-                <input
-                  type="radio"
-                  id="stitches"
-                  name="startingOption"
-                  value="stitches"
-                  checked={selectedOption === "stitches"}
-                  onChange={(e) => setSelectedOption(e.target.value)}
-                />
-                <label htmlFor="stitches">Number of starting stitches:</label>
-                <input
-                  type="number"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  disabled={selectedOption !== "stitches"}
-                  required={selectedOption === "stitches"}
-                /> */}
-        {/* <input
-                    type="radio"
-                    id="magicRing"
-                    name="startingOption"
-                    value="magicRing"
-                    checked={selectedOption === "magicRing"}
-                    onChange={(e) => setSelectedOption(e.target.value)}
+        {!submitted ? (
+          <section className="Setup">
+            <div className="Instructions">
+              <h2>Instructions will be here </h2>
+            </div>
+            <div className="getStartingSts">
+              <form onSubmit={handleStartingSts}>
+                <label htmlFor="startingStitches">Please enter the number of starting stitches:</label>
+                <div className="input-group">
+                  <input
+                    type="number"
+                    id="startingStitches"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    required
                   />
-                  <label htmlFor="magicRing">Magic ring</label> */}
-        {/* <button type="submit">Save</button>
-              </div>
-            </form>
-          </div>
-        </section> */}
-        {/* ) : ( */}
-        <>
-          <div className="Chart">
-            <Chart
-              stitches={initialStitches}
-              updateChart={updateChart}
-              rounds={rounds}
-              setRounds={setRounds}
-              generateRandomKey={generateRandomKey}
-            />
-          </div>
-        </>
-        {/* )} */}
+                  <button type="submit">Save</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        ) : (
+          <>
+            <div className="Chart">
+              <Chart
+                stitches={initialStitches}
+                updateChart={updateChart}
+                rounds={rounds}
+                setRounds={setRounds}
+                generateRandomKey={generateRandomKey}
+              />
+            </div>
+          </>
+        )}
         <div className="TextDisplay">
           <TextDisplay updateChart={updateChart} generateRandomKey={generateRandomKey} rounds={rounds} />
         </div>

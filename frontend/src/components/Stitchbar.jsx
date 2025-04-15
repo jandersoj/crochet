@@ -81,7 +81,11 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
       <div className="stitch-buttons">
         {stitches.map((stitch) => (
           <Button key={generateRandomKey()} onClick={() => handleSelect(stitch)}>
-            <img src={stitch.image} alt={stitch.name} style={{ height: "50px", width: "50px" }} />
+            <img
+              src={stitch.image}
+              alt={stitch.name}
+              style={{ height: "50px", width: "50px", background: "transparent" }}
+            />
           </Button>
         ))}
       </div>

@@ -1,18 +1,24 @@
 .Chart {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   height: 100%;
 }
 
-.chart-body {
+.chart-background {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+}
+
+.chart {
   /* display: flex;
     justify-content: center;
     align-items: center; */
-  width: 500px;
-  height: 500px;
-  position: relative;
+  width: 100%;
+  height: 100%;
+  /* position: relative; */
 }
 
 .chart-body #canvas {
@@ -21,11 +27,11 @@
   display: block;
 }
 
-.chart {
+/* .chart {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .round {
   /* border: 1px solid #ccc; */
