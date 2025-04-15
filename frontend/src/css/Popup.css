@@ -1,6 +1,6 @@
 .popup {
-  background-color: #40827d;
-  border: 1px solid #000;
+  background-color: var(--color2);
+  border: 2px solid var(--color1);
   padding: 5px;
   width: 300px;
   max-height: 150px;

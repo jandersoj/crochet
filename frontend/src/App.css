@@ -1,3 +1,10 @@
+:root {
+  --color1: #96b159;
+  --color2: #b0c482;
+  --accent: #758b41;
+  --background: #e2f3b8;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -7,17 +14,30 @@ body {
 
 header {
   margin: 0;
-  height: 9vh;
+  height: 8vh;
 }
 
 main {
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  height: 90vh;
+  height: 99vh;
+}
+
+.Setup {
+  background-color: #e2f3b8;
+  height: 50%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  border: 5px solid var(--color1);
 }
 
 .Stitchbar {
+  background-color: var(--color2);
   flex: 1;
   max-width: 20vw; /* Adjust the width as needed */
   min-width: 20vw;
@@ -38,7 +58,7 @@ main {
 
 .getStartingSts {
   display: flex;
-  height: auto;
+  height: 50vh;
   width: auto;
   padding: 20px;
 }

@@ -6,6 +6,8 @@ import TextDisplay from "./components/TextDisplay.jsx";
 import "./App.css";
 import { apiUrl } from "./api_url.js";
 import html2canvas from "html2canvas";
+
+import Button from "./components/Button.jsx";
 import jsPDF from "jspdf";
 //stitch images:
 
@@ -27,6 +29,7 @@ import scImage from "./images/sc.png";
 import slstImage from "./images/slst.png";
 import trImage from "./images/tr.png";
 import blankImage from "./images/blank.png";
+import { G } from "@react-pdf/renderer";
 
 export const initialStitches = [
   //construction stitches
@@ -70,6 +73,7 @@ export default function App() {
   const [selectedStitch, setSelectedStitch] = useState(null);
   const [startingSts, setStartingSts] = useState([]); //temp
   const [updateChart, setUpdateChart] = useState(false); // State to trigger chart update
+  const printRef = useRef();
 
   const handleStartingSts = async (event) => {
     event.preventDefault();
@@ -127,10 +131,33 @@ export default function App() {
     }
   };
 
+  const handleDownloadImage = async () => {
+    console.log("printRef.current", printRef.current);
+    const canvas = await html2canvas(printRef.current);
+
+    const data = canvas.toDataURL("image/jpg");
+    const link = document.createElement("a");
+
+    if (typeof link.download === "string") {
+      link.href = data;
+      link.download = "image.jpg";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      window.open(data);
+    }
+  };
+
   return (
     <>
       <header>
-        <Header />
+        <Header downloadClick={handleDownloadImage} />
+
+        {/* <button type="none" onClick={handleDownloadImage}>
+          download your creation
+        </button> */}
       </header>
       <main>
         <div className="Stitchbar">
@@ -147,7 +174,26 @@ export default function App() {
         {!submitted ? (
           <section className="Setup">
             <div className="Instructions">
-              <h2>Instructions will be here </h2>
+              <h2>Instructions for use: </h2>
+              <p>Circldelic is a tool for creating custom circular crochet patterns in text and chart form.</p>
+              <p>
+                First, enter the number of stitches to begin with. In the editor, you can toggle on and off a magic ring
+                symbol.
+              </p>
+              <p>
+                For each consecutive round, click 'add round' on the left panel, use the buttons to choose a sequence of
+                stitches, click 'generate round', and Circldelic will automatically repeat the sequence through the
+                round.
+              </p>
+              <p>
+                To customize further, click on any stitch in the chart to change it to another. This is the time to add
+                slip stitches, chains up, and decorative stitches!
+              </p>
+              <p>When you're finished, export your chart as an image and consider filling out a user survey.</p>
+              <p>
+                Once you're done crocheting, you can also submit your pattern and finished project--it will make me, the
+                creator, smile.
+              </p>
             </div>
             <div className="getStartingSts">
               <form onSubmit={handleStartingSts}>
@@ -167,7 +213,7 @@ export default function App() {
           </section>
         ) : (
           <>
-            <div className="Chart">
+            <div className="Chart" ref={printRef}>
               <Chart
                 stitches={initialStitches}
                 updateChart={updateChart}

@@ -59,9 +59,7 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
   return (
     <>
       <div className="creation-buttons">
-        <Button onClick={handleClearAll}>Clear all</Button>
-        {/* <Button onClick={() => console.log("undo button clicked")}>Undo</Button>
-        <Button onClick={() => console.log("redo button clicked")}>Redo</Button> */}
+        <Button onClick={handleClearAll}>Reset all</Button>
         <Button onClick={handleClearSelection}>Clear selection</Button>
       </div>
 
@@ -79,15 +77,41 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
       </section>
 
       <div className="stitch-buttons">
-        {stitches.map((stitch) => (
-          <Button key={generateRandomKey()} onClick={() => handleSelect(stitch)}>
-            <img
-              src={stitch.image}
-              alt={stitch.name}
-              style={{ height: "50px", width: "50px", background: "transparent" }}
-            />
-          </Button>
-        ))}
+        {stitches.map((stitch) => {
+          const [hovered, setHovered] = useState(false);
+
+          return (
+            <Button
+              // key={generateRandomKey()}
+              onClick={() => handleSelect(stitch)}
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              style={{
+                height: "75px",
+                width: "75px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 0,
+                position: "relative",
+              }}>
+              {hovered ? (
+                <span style={{ fontSize: "0.75rem", textAlign: "center" }}>{stitch.name}</span>
+              ) : (
+                <img
+                  src={stitch.image}
+                  alt={stitch.name}
+                  style={{
+                    height: "50px",
+                    width: "50px",
+                    background: "transparent",
+                    objectFit: "contain",
+                  }}
+                />
+              )}
+            </Button>
+          );
+        })}
       </div>
     </>
   );

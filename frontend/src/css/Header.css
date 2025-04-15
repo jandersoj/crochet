@@ -1,16 +1,36 @@
 header {
   margin: 0;
   padding: 0;
-  color: #ffe0c0;
-  /* height: vh; */
+  color: #3e5211;
+  height: 8vh;
   display: flex;
   justify-content: center;
-  background-color: #d56653;
-  border-bottom: 7px solid #e79b63;
+  align-items: center;
+  background-color: var(--background);
+  width: 100%;
+  border-bottom: 4px solid var(--accent);
 }
 
-header .h1 {
-  background-color: #d56653;
-  margin: 0;
-  padding: 0;
+#content {
+  width: 94%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* #buttons {
+  position: absolute;
+} */
+
+button {
+  height: fit-content;
+  font-size: medium;
+}
+
+a,
+a:link,
+a:hover,
+a:active,
+a:visited {
+  font-size: medium;
+  color: #3e5211;
 }

@@ -49,13 +49,24 @@ const TextDisplay = ({ updateChart, generateRandomKey }) => {
   };
 
   return (
-    <div className="text">
-      {rounds.map((round, idx) => (
-        <div key={generateRandomKey()} className="round-text">
-          <b>Round {idx + 1}: </b> {formatStitches(round.stitches)}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="text">
+        {rounds.map((round, idx) => (
+          <div key={generateRandomKey()} className="round-text">
+            <b>Round {idx + 1}: </b> {formatStitches(round.stitches)}
+          </div>
+        ))}
+      </div>
+      <div className="links">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSerr6WVqdaahEBhwsGJl0uA1rEHzuN_gTzTWUWFd4OGFJm8Jw/viewform?usp=dialog">
+          User survey
+        </a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSczEhqIr0d3leDdSSkogDJNjJh9AiFOOasYs2GCTGcHXDFu3A/viewform?usp=sharing">
+          Project submission
+        </a>
+        <a href="https://github.com/jandersoj/crochet">Circldelic on github</a>
+      </div>
+    </>
   );
 };
 

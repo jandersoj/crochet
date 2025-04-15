@@ -46,11 +46,40 @@ const Popup = ({ style, onClose, stitchClicked, setRounds }) => {
       </button>
       <div className="stitch-buttons">
         <h3>Select a replacement stitch:</h3>
-        {initialStitches.map((stitch) => (
-          <Button key={generateRandomKey()} onClick={() => handleStitchClick(stitch)}>
-            <img src={stitch.image} alt={stitch.name} style={{ height: "50px", width: "50px" }} />
-          </Button>
-        ))}
+        {initialStitches.map((stitch) => {
+          const [hovered, setHovered] = React.useState(false);
+          return (
+            <Button
+              key={generateRandomKey()}
+              onClick={() => handleStitchClick(stitch)}
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              style={{
+                height: "75px",
+                width: "75px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 0,
+                position: "relative",
+              }}>
+              {hovered ? (
+                <span style={{ fontSize: "0.75rem", textAlign: "center" }}>{stitch.name}</span>
+              ) : (
+                <img
+                  src={stitch.image}
+                  alt={stitch.name}
+                  style={{
+                    height: "50px",
+                    width: "50px",
+                    background: "transparent",
+                    objectFit: "contain",
+                  }}
+                />
+              )}
+            </Button>
+          );
+        })}
       </div>
     </div>
   );
