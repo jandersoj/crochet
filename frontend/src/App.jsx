@@ -171,7 +171,7 @@ export default function App() {
         {!submitted ? (
           <section className="Setup">
             <div className="Instructions">
-              <h2>Instructions for use: </h2>
+              <h2>Instructions: </h2>
               <p>Circldelic is a tool for creating custom circular crochet patterns in text and chart form.</p>
               <p>
                 First, enter the number of stitches to begin with. In the editor, you can toggle on and off a magic ring
