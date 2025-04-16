@@ -7,7 +7,7 @@ const Header = ({ downloadClick }) => {
       <header id="heading">
         <div id="content">
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSerr6WVqdaahEBhwsGJl0uA1rEHzuN_gTzTWUWFd4OGFJm8Jw/viewform?usp=dialog">
-            User survey (please!!)
+            User survey!!
           </a>
           <h1> Circldelic </h1>
           <div id="buttons">

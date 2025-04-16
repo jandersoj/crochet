@@ -1,14 +1,14 @@
 header {
   margin: 0;
   padding: 0;
-  color: #3e5211;
+  color: var(--accent);
   height: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--background);
   width: 100%;
-  border-bottom: 4px solid var(--accent);
+  border-bottom: 4px solid var(--color1);
 }
 
 #content {
@@ -32,5 +32,5 @@ a:hover,
 a:active,
 a:visited {
   font-size: medium;
-  color: #3e5211;
+  color: var(--accent);
 }

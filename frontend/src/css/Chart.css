@@ -1,37 +1,12 @@
 .Chart {
   display: flex;
-  /* justify-content: center; */
   flex-direction: row;
-  /* align-items: center; */
-  height: 100%;
-}
-
-.chart-background {
-  background-color: #ffffff;
-  width: 100%;
-  height: 100%;
 }
 
 .chart {
-  /* display: flex;
-    justify-content: center;
-    align-items: center; */
   width: 100%;
   height: 100%;
-  /* position: relative; */
 }
-
-.chart-body #canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* .chart {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
 
 .round {
   /* border: 1px solid #ccc; */
@@ -40,14 +15,3 @@
   width: 200px;
   text-align: center;
 }
-
-/* .text {
-  font-size: 20px;
-  font-weight: bold;
-  color: #40827d;
-} */
-
-/* .stitch_img {
-  height: 50px;
-  width: 50px;
-} */

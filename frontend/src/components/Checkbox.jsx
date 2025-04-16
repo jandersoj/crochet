@@ -17,9 +17,9 @@ function Checkbox({ handleChecked, label }) {
             appearance: "none", // Remove default checkbox styling
             width: "20px",
             height: "20px",
-            border: "2px solid #758b41",
+            border: "3px solid #6eb5c7",
             borderRadius: "20px",
-            backgroundColor: isChecked ? "#96b159" : "white", // heck yeahhhh ternary moment
+            backgroundColor: isChecked ? "#1492a3" : "white", // heck yeahhhh ternary moment
             cursor: "pointer",
           }}
         />

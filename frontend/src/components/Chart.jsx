@@ -6,7 +6,7 @@ import Checkbox from "./Checkbox.jsx";
 
 import mrImage from "../images/mr.png"; // Import the image
 
-const Chart = ({ stitches, updateChart, rounds, setRounds, generateRandomKey }) => {
+const Chart = ({ stitches, updateChart, rounds, setRounds, generateRandomKey, startingLength }) => {
   const chartRef = useRef(null); // Ref for the .chart container
   const [centerX, setCenterX] = useState(0);
   const [centerY, setCenterY] = useState(0);
@@ -66,6 +66,7 @@ const Chart = ({ stitches, updateChart, rounds, setRounds, generateRandomKey }) 
               setRounds={setRounds}
               centerX={centerX}
               centerY={centerY}
+              startingLength={startingLength}
             />
           ))}
           {magicRing && (
@@ -74,11 +75,10 @@ const Chart = ({ stitches, updateChart, rounds, setRounds, generateRandomKey }) 
               alt="Magic Ring"
               style={{
                 position: "absolute",
-                left: `${centerX}px`, // Center the image horizontally
-                top: `${centerY}px`, // Center the image vertically
-                width: "50px", // Adjust the size of the image
+                left: `${centerX}px`, // Center horizontally
+                top: `${centerY}px`, // Center ertically
+                width: "50px", // Adjust size of the image
                 height: "50px",
-                // transform: "translate(-50%, -50%)", // Ensure the image is centered
               }}
             />
           )}

@@ -7,8 +7,6 @@ import "./App.css";
 import { apiUrl } from "./api_url.js";
 import html2canvas from "html2canvas";
 
-import Button from "./components/Button.jsx";
-import jsPDF from "jspdf";
 //stitch images:
 
 import twodcinoneImage from "./images/2dcin1.png";
@@ -29,16 +27,8 @@ import scImage from "./images/sc.png";
 import slstImage from "./images/slst.png";
 import trImage from "./images/tr.png";
 import blankImage from "./images/blank.png";
-import { G } from "@react-pdf/renderer";
 
 export const initialStitches = [
-  //construction stitches
-  { id: "ch1up", name: "Chain 1 Up", image: ch1upImage },
-  { id: "ch2up", name: "Chain 2 Up", image: ch2upImage },
-  { id: "ch3up", name: "Chain 3 Up", image: ch3upImage },
-  { id: "chslst", name: "Chain + Slip Stitch", image: chslstImage },
-  { id: "skip", name: "Skip", image: blankImage },
-
   //basic stitches
   { id: "slst", name: "Slip Stitch", image: slstImage },
   { id: "ch", name: "Chain", image: chImage },
@@ -57,6 +47,13 @@ export const initialStitches = [
   { id: "popcorn", name: "Popcorn", image: popcornImage },
   { id: "puff", name: "Puff Stitch", image: puffImage },
   { id: "picot", name: "Picot", image: picotImage },
+
+  //construction stitches
+  { id: "ch1up", name: "Chain 1 Up", image: ch1upImage },
+  { id: "ch2up", name: "Chain 2 Up", image: ch2upImage },
+  { id: "ch3up", name: "Chain 3 Up", image: ch3upImage },
+  { id: "chslst", name: "Chain + Slip Stitch", image: chslstImage },
+  { id: "skip", name: "Skip", image: blankImage },
 ];
 
 export const generateRandomKey = () => {
@@ -216,6 +213,7 @@ export default function App() {
             <div className="Chart" ref={printRef}>
               <Chart
                 stitches={initialStitches}
+                startingLength={startingSts.length}
                 updateChart={updateChart}
                 rounds={rounds}
                 setRounds={setRounds}

@@ -13,7 +13,7 @@ const Round = ({ round, roundIndex, setRounds, centerX, centerY }) => {
 
   const roundRef = useRef(null);
 
-  const positions = calculateCirclePositions(round.stitches.length, 60 + roundIndex * 50);
+  const positions = calculateCirclePositions(round.stitches.length, 50 + roundIndex * 52);
 
   return (
     <div className="round" ref={roundRef}>

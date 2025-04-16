@@ -1,8 +1,8 @@
 :root {
-  --color1: #96b159;
-  --color2: #b0c482;
-  --accent: #758b41;
-  --background: #e2f3b8;
+  --color2: #6eb5c7;
+  --color1: #1492a3;
+  --accent: #163957;
+  --background: #b7e9f3;
 }
 
 body {
@@ -25,7 +25,7 @@ main {
 }
 
 .Setup {
-  background-color: #e2f3b8;
+  background-color: var(--background);
   height: 50%;
   width: 40%;
   display: flex;
