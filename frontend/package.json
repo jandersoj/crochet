@@ -1,26 +1,32 @@
 {
   "name": "crochet",
   "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/jandersoj/crochet#readme",
+  "bugs": {
+    "url": "https://github.com/jandersoj/crochet/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jandersoj/crochet.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite dev",
     "build": "vite build"
   },
-  "author": "Josie Anderson",
-  "license": "ISC",
   "dependencies": {
-    "antd": "^5.22.7",
     "flask": "^0.2.10",
-    "konva": "^9.3.18",
+    "html2canvas": "^1.4.1",
     "pip": "^0.0.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-konva": "^19.0.1",
-    "vite": "^5.4.15"
+    "poetry": "^0.6.29",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "vite": "^6.3.0"
   },
-  "description": "",
-  "devDependencies": {
-    "prettier": "3.4.2"
-  }
+  "devDependencies": {}
 }
