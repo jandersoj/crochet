@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Stitch from "./Stitch";
 
-const Round = ({ round, roundIndex, setRounds, centerX, centerY }) => {
+const Round = ({ round, roundIndex, setRounds, centerX, centerY, setUpdateChart }) => {
   const calculateCirclePositions = (count, radius) => {
     return Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * 2 * Math.PI - Math.PI / 2; // Distribute evenly in a circle
@@ -30,6 +30,7 @@ const Round = ({ round, roundIndex, setRounds, centerX, centerY }) => {
             roundIndex={roundIndex}
             stitchIndex={idx}
             setRounds={setRounds}
+            setUpdateChart={setUpdateChart}
           />
         );
       })}

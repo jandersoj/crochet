@@ -4,7 +4,7 @@ import { initialStitches, generateRandomKey } from "../App";
 import "../css/Popup.css";
 import { apiUrl } from "../api_url.js";
 
-const Popup = ({ style, onClose, stitchClicked, setRounds }) => {
+const Popup = ({ style, onClose, stitchClicked, setRounds, setUpdateChart }) => {
   const handleStitchClick = async (stitch) => {
     console.log(
       `Clicked stitch: ${stitch.name} for round ${stitchClicked.roundIndex}, stitch ${stitchClicked.stitchIndex}`
@@ -31,6 +31,8 @@ const Popup = ({ style, onClose, stitchClicked, setRounds }) => {
       const result = await response.json();
       console.log("Submitted:", result);
       setRounds(result);
+
+      setUpdateChart((prev) => !prev);
     } catch (error) {
       console.error("Error:", error);
     }

@@ -79,7 +79,6 @@ export default function App() {
     setRounds([{ stitches: chainStitches }]);
     await handleSubmit(chainStitches);
     setStartingSts(numChains);
-
     setSubmitted(true);
     setUpdateChart((prev) => !prev); // Trigger chart update
     setRoundCount(1); // Initialize round count to 1
@@ -178,18 +177,20 @@ export default function App() {
                 symbol.
               </p>
               <p>
-                For each consecutive round, click 'add round' on the left panel, use the buttons to choose a sequence of
-                stitches, click 'generate round', and Circldelic will automatically repeat the sequence through the
-                round.
+                For each consecutive round, use the buttons to choose a sequence of stitches, click 'generate round',
+                and Circldelic will automatically repeat the sequence through the round.
               </p>
               <p>
                 To customize further, click on any stitch in the chart to change it to another. This is the time to add
                 slip stitches, chains up, and decorative stitches!
               </p>
-              <p>When you're finished, export your chart as an image and consider filling out a user survey.</p>
               <p>
-                Once you're done crocheting, you can also submit your pattern and finished project--it will make me, the
-                creator, smile.
+                When you're finished, export your chart as an image and please consider filling out a user survey with
+                any thoughts or ideas.
+              </p>
+              <p>
+                Once you're done crocheting, you can also submit your pattern and finished project--it will make me
+                smile.
               </p>
             </div>
             <div className="getStartingSts">
@@ -215,6 +216,7 @@ export default function App() {
                 stitches={initialStitches}
                 startingLength={startingSts.length}
                 updateChart={updateChart}
+                setUpdateChart={setUpdateChart}
                 rounds={rounds}
                 setRounds={setRounds}
                 generateRandomKey={generateRandomKey}

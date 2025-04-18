@@ -5,7 +5,7 @@ import { apiUrl } from "../api_url.js";
 
 const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generateRandomKey }) => {
   const [selectedStitches, setSelectedStitches] = useState([]);
-  const [gettingSequence, setGettingSequence] = useState(false);
+  const [gettingSequence, setGettingSequence] = useState(true);
 
   const handleClearAll = async () => {
     var clearConfirm = confirm("Are you sure that you want to clear all? This action cannot be undone");
@@ -50,7 +50,9 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
     console.log("handled submit");
     setGettingSequence(false);
     setSelectedStitches([]);
+    handleNewRound();
   };
+
   const handleClearSelection = () => {
     console.log("clear selection button clicked");
     setSelectedStitches([]);
@@ -72,7 +74,6 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
           ))}
         </div>
 
-        {!gettingSequence && <Button onClick={handleNewRound}>Add Round</Button>}
         {gettingSequence && <Button onClick={handleGenerateRound}>Generate Round</Button>}
       </section>
 
