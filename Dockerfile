@@ -30,6 +30,9 @@ COPY backend/ ./
 # Copy frontend build from the frontend-build stage
 COPY --from=frontend-build /app/dist ./dist
 
+# Set the REDIS_URL environment variable
+ENV REDIS_URL=redis://red-d01ufjbuibrs73b6ohug:6379
+
 # Expose the port
 EXPOSE ${PORT}
 
