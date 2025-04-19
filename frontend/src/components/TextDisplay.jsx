@@ -8,7 +8,10 @@ const TextDisplay = ({ updateChart, generateRandomKey }) => {
     const fetchChartData = async () => {
       // console.log("fetchChartData called");
       try {
-        const response = await fetch(`${apiUrl}/get-chart-data`);
+        const response = await fetch(`${apiUrl}/get-chart-data`, {
+          method: "GET",
+          credentials: "include",
+        });
         const data = await response.json();
         // console.log("chart fetched", data);
         setRounds(data);

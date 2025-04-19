@@ -8,7 +8,6 @@ import { apiUrl } from "./api_url.js";
 import html2canvas from "html2canvas";
 
 //stitch images:
-
 import twodcinoneImage from "./images/2dcin1.png";
 import twohdcinoneImage from "./images/2hdcin1.png";
 import threedcinoneImage from "./images/3dcin1.png";
@@ -63,15 +62,16 @@ export const generateRandomKey = () => {
 export default function App() {
   //previously had the initial stitches here but wanted to export
 
-  const [submitted, setSubmitted] = useState(false);
-  const [rounds, setRounds] = useState([]);
-  const [roundCount, setRoundCount] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-  const [selectedStitch, setSelectedStitch] = useState(null);
-  const [startingSts, setStartingSts] = useState([]); //temp
-  const [updateChart, setUpdateChart] = useState(false); // State to trigger chart update
+  const [submitted, setSubmitted] = useState(false); //whether the number of starting stitches has been submitted
+  const [rounds, setRounds] = useState([]); //the stitches in rounds that are going to Chart
+  const [roundCount, setRoundCount] = useState(0); //how many rounds are in the current pattern
+  const [inputValue, setInputValue] = useState(""); //for getting num of starting stitches
+  const [selectedStitch, setSelectedStitch] = useState(null); //works w stitchbar
+  const [startingSts, setStartingSts] = useState([]); //num of starting stitches
+  const [updateChart, setUpdateChart] = useState(false); //changes to trigger chart updates
   const printRef = useRef();
 
+  //gets the entered num of starting stitches, submits, updates states accordingly.
   const handleStartingSts = async (event) => {
     event.preventDefault();
     const numChains = parseInt(inputValue, 10);
@@ -80,32 +80,32 @@ export default function App() {
     await handleSubmit(chainStitches);
     setStartingSts(numChains);
     setSubmitted(true);
-    setUpdateChart((prev) => !prev); // Trigger chart update
-    setRoundCount(1); // Initialize round count to 1
+    setUpdateChart((prev) => !prev); //trigger chart update
+    setRoundCount(1);
   };
 
   const handleGenerateRound = () => {
-    console.log("handleGenerateRound in App.jsx called");
-    setUpdateChart((prev) => !prev); // Trigger chart update
-    setRoundCount((prevCount) => prevCount + 1); // Increment round count
+    // console.log("handleGenerateRound in App.jsx called");
+    setUpdateChart((prev) => !prev); //trigger chart update
+    setRoundCount((prevCount) => prevCount + 1); //increment
   };
 
+  //formats and submits/POSTs the stitches selected in Stitchbar to the backend
   const handleSubmit = async (selectedStitches) => {
     const roundLength = startingSts * (1 + roundCount);
-    console.log("roundLength", roundLength);
-
+    // console.log("roundLength", roundLength);
     if (selectedStitches.length === 0) {
       alert("Please select at least one stitch");
       return;
     }
 
     if (selectedStitches.length < roundLength) {
-      //here's where we repeat the sequence to fill the round
+      //repeat the sequence to fill the round
       let temp = selectedStitches;
       while (temp.length < roundLength) {
         temp = [...temp, ...selectedStitches];
       }
-      temp = temp.slice(0, roundLength); // make sure temp is exactly roundLength
+      temp = temp.slice(0, roundLength); //make sure temp is exactly roundLength
       selectedStitches = temp;
     }
 
@@ -113,6 +113,7 @@ export default function App() {
     try {
       const response = await fetch(`${apiUrl}/submit-sequence`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -121,7 +122,7 @@ export default function App() {
 
       const result = await response.json();
       console.log("Submitted:", result);
-      handleGenerateRound(); // Trigger the update in App.jsx
+      handleGenerateRound();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -150,10 +151,6 @@ export default function App() {
     <>
       <header>
         <Header downloadClick={handleDownloadImage} />
-
-        {/* <button type="none" onClick={handleDownloadImage}>
-          download your creation
-        </button> */}
       </header>
       <main>
         <div className="Stitchbar">
@@ -167,7 +164,7 @@ export default function App() {
           />
         </div>
 
-        {!submitted ? (
+        {!submitted ? ( //the instructions and submission of starting stitches
           <section className="Setup">
             <div className="Instructions">
               <h2>Instructions: </h2>
@@ -193,6 +190,7 @@ export default function App() {
                 smile.
               </p>
             </div>
+            {/* i feel like this one is fairly self-explanatory: */}
             <div className="getStartingSts">
               <form onSubmit={handleStartingSts}>
                 <label htmlFor="startingStitches">Please enter the number of starting stitches:</label>

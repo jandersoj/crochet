@@ -26,7 +26,7 @@ main {
 
 .Setup {
   background-color: var(--background);
-  height: 50%;
+  height: fit-content;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -39,15 +39,11 @@ main {
 .Stitchbar {
   background-color: var(--color2);
   flex: 1;
-  max-width: 20vw; /* Adjust the width as needed */
-  min-width: 20vw;
 }
 
 .Chart {
   flex: 4;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .TextDisplay {
@@ -75,4 +71,29 @@ main {
 
 .input-group button {
   margin-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    flex-direction: column; /* Stack components vertically */
+    height: auto; /* Allow content to expand */
+  }
+
+  .Setup {
+    width: 90%; /* Take up most of the screen width */
+    height: auto; /* Adjust height for mobile */
+    margin: 10px auto; /* Center the Setup section */
+    padding: 10px;
+  }
+
+  .Chart {
+    height: auto; /* Adjust height for mobile */
+    margin: 10px 0; /* Add spacing above and below Chart */
+    border: 10px solid orange;
+  }
+
+  .TextDisplay {
+    height: auto; /* Adjust height for mobile */
+    margin-top: 10px; /* Add spacing above TextDisplay */
+  }
 }

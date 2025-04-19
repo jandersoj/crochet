@@ -1,6 +1,9 @@
 .Chart {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .chart {
@@ -14,4 +17,19 @@
   margin: 10px;
   width: 200px;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .Chart {
+    flex-direction: column; /* Stack content vertically */
+    width: 100%; /* Full width */
+    height: auto; /* Adjust height for mobile */
+  }
+
+  .chart {
+    width: 90%; /* Make the chart responsive */
+    height: 90vw; /* Maintain a square aspect ratio */
+    max-width: 400px; /* Optional: Limit the size of the chart */
+    max-height: 400px;
+  }
 }

@@ -34,3 +34,22 @@ a:visited {
   font-size: medium;
   color: var(--accent);
 }
+
+@media only screen and (max-width: 600px) {
+  header {
+    height: 10vh; /* Adjust header height for mobile */
+  }
+
+  #content {
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+  }
+
+  button {
+    font-size: small; /* Reduce button font size */
+  }
+
+  a {
+    font-size: small; /* Reduce link font size */
+  }
+}

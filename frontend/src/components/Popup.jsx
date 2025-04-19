@@ -17,6 +17,7 @@ const Popup = ({ style, onClose, stitchClicked, setRounds, setUpdateChart }) => 
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           roundIndex: stitchClicked.roundIndex,
           stitchIndex: stitchClicked.stitchIndex,

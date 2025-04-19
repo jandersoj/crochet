@@ -14,6 +14,7 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
       try {
         const response = await fetch(`${apiUrl}/clear-chart`, {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -83,7 +84,7 @@ const Stitchbar = ({ stitches, onSelect, onGenerateRound, handleSubmit, generate
 
           return (
             <Button
-              // key={generateRandomKey()}
+              key={generateRandomKey()}
               onClick={() => handleSelect(stitch)}
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}

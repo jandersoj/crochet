@@ -4,36 +4,39 @@ import Round from "./Round";
 import { apiUrl } from "../api_url.js";
 import Checkbox from "./Checkbox.jsx";
 
-import mrImage from "../images/mr.png"; // Import the image
+import mrImage from "../images/mr.png"; //magic ring
 
 const Chart = ({ setUpdateChart, updateChart, rounds, setRounds, generateRandomKey, startingLength }) => {
-  const chartRef = useRef(null); // Ref for the .chart container
+  const chartRef = useRef(null); //ref for the .chart container
   const [centerX, setCenterX] = useState(0);
   const [centerY, setCenterY] = useState(0);
   const [magicRing, setMagicRing] = useState(false);
 
   useEffect(() => {
-    // Calculate centerX and centerY based on the .chart container
+    //calculate centerX and centerY based on the .chart container so that rounds are evenly placed
     const updateCenter = () => {
       if (chartRef.current) {
         const rect = chartRef.current.getBoundingClientRect();
-        setCenterX(rect.left + rect.width / 2 - 50); // Adjust centerX to account for the container's position
-        setCenterY(rect.top + rect.height / 2 - 25); // Adjust centerY to account for the container's position
+        setCenterX(rect.left + rect.width / 2 - 50);
+        setCenterY(rect.top + rect.height / 2 - 25);
       }
     };
-
-    updateCenter(); // Initial calculation
-    window.addEventListener("resize", updateCenter); // Recalculate on window resize
+    updateCenter();
+    window.addEventListener("resize", updateCenter); // Recalculate on window resize. works... ok
 
     return () => {
       window.removeEventListener("resize", updateCenter);
     };
   }, []);
 
+  //pulls the chart data from the backend
   const fetchChartData = async () => {
     console.log("fetchChartData called");
     try {
-      const response = await fetch(`${apiUrl}/get-chart-data`);
+      const response = await fetch(`${apiUrl}/get-chart-data`, {
+        method: "GET",
+        credentials: "include",
+      });
       const data = await response.json();
       console.log("chart fetched", data);
       setRounds(data);

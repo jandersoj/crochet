@@ -4,6 +4,8 @@
   flex-direction: column;
   height: 100%;
   border-right: 5px solid var(--color1);
+  max-width: 20vw;
+  min-width: 20vw;
 }
 
 Button {
@@ -59,4 +61,32 @@ Button {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .Stitchbar {
+    flex-direction: row; /* Make Stitchbar horizontal */
+    height: auto; /* Adjust height for mobile */
+    width: 100%; /* Full width */
+    justify-content: center;
+    align-items: center;
+    border-right: none; /* Remove right border */
+    border-bottom: 5px solid var(--color1); /* Add bottom border */
+  }
+
+  .creation-buttons {
+    flex-direction: row; /* Keep buttons horizontal */
+    flex-wrap: wrap; /* Allow wrapping */
+  }
+
+  .stitch-buttons {
+    flex-direction: row; /* Keep buttons horizontal */
+    flex-wrap: wrap; /* Allow wrapping */
+  }
+
+  .selection {
+    flex-direction: column; /* Stack selection content vertically */
+    height: auto; /* Adjust height */
+    width: 100%; /* Full width */
+  }
 }

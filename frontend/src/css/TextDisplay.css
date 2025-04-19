@@ -22,3 +22,17 @@
   /* padding-top: 20px; */
   border: 5px solid var(--color1);
 }
+
+@media only screen and (max-width: 600px) {
+  .text {
+    font-size: medium; /* Reduce font size */
+    padding: 10px; /* Adjust padding */
+    height: auto; /* Adjust height for mobile */
+  }
+
+  .links {
+    flex-direction: row; /* Make links horizontal */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center;
+  }
+}
