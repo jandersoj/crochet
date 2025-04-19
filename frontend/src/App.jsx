@@ -69,6 +69,7 @@ export default function App() {
   const [selectedStitch, setSelectedStitch] = useState(null); //works w stitchbar
   const [startingSts, setStartingSts] = useState([]); //num of starting stitches
   const [updateChart, setUpdateChart] = useState(false); //changes to trigger chart updates
+  const [downloadCount, setDownloadCount] = useState(1); //for download button
   const printRef = useRef();
 
   //gets the entered num of starting stitches, submits, updates states accordingly.
@@ -135,13 +136,19 @@ export default function App() {
     const data = canvas.toDataURL("image/jpg");
     const link = document.createElement("a");
 
+    // Use the download count in the filename
+    const filename = `crochet_chart_${downloadCount}.jpg`;
+
     if (typeof link.download === "string") {
       link.href = data;
-      link.download = "image.jpg";
+      link.download = filename;
 
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
+      // Increment the download count
+      setDownloadCount((prevCount) => prevCount + 1);
     } else {
       window.open(data);
     }

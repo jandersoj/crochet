@@ -1,12 +1,30 @@
 from flask import Flask, jsonify, request, send_from_directory, session
 from flask_cors import CORS
-import json
-from flask import redirect
+from flask_session import Session
+import redis
+import os
 
+# Initialize Flask app
 app = Flask(__name__, static_folder='dist', static_url_path='')
-app.secret_key = '\x82\x94+O\r\\<\xbc\xb4\xa8\x8e\x9e'
 
-CORS(app, supports_credentials=True)
+# Redis session configuration
+app.config['SESSION_REDIS'] = redis.StrictRedis.from_url(
+    os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+)
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_KEY_PREFIX'] = 'chart_data:'
+
+# Secret key for session encryption
+#remember to run 
+app.secret_key = os.environ.get('SECRET_KEY', 'e88fa07e2dc8029cd3508b14917104d2cdb9f3bb9805d50ee66d72d1f82b9c7b')
+
+# Initialize Flask-Session
+Session(app)
+
+# Enable CORS
+CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "https://circldelic.art/"]}}, supports_credentials=True)
 
 @app.route('/')
 @app.route('/<path:path>')
@@ -70,4 +88,7 @@ def hello_world():
     return "hello world"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
+
+r = redis.StrictRedis.from_url('redis://localhost:6379/0')
+print(r.ping())  # Should print True if Redis is running
