@@ -46,8 +46,8 @@ const Stitch = ({
           // transformOrigin: "center",
         }}>
         <img
-          src={imageurl}
           alt={name}
+          src={imageurl}
           style={{
             height: "50px",
             width: "50px",

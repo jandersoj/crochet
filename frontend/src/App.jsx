@@ -69,7 +69,7 @@ export default function App() {
   const [selectedStitch, setSelectedStitch] = useState(null); //works w stitchbar
   const [startingSts, setStartingSts] = useState([]); //num of starting stitches
   const [updateChart, setUpdateChart] = useState(false); //changes to trigger chart updates
-  const [downloadCount, setDownloadCount] = useState(1); //for download button
+  // const [downloadCount, setDownloadCount] = useState(1); //for download button
   const printRef = useRef();
 
   //gets the entered num of starting stitches, submits, updates states accordingly.
@@ -137,7 +137,7 @@ export default function App() {
     const link = document.createElement("a");
 
     // Use the download count in the filename
-    const filename = `crochet_chart_${downloadCount}.jpg`;
+    const filename = `crochet_chart.jpg`;
 
     if (typeof link.download === "string") {
       link.href = data;
@@ -148,7 +148,7 @@ export default function App() {
       document.body.removeChild(link);
 
       // Increment the download count
-      setDownloadCount((prevCount) => prevCount + 1);
+      // setDownloadCount((prevCount) => prevCount + 1);
     } else {
       window.open(data);
     }
@@ -209,7 +209,7 @@ export default function App() {
                     onChange={(e) => setInputValue(e.target.value)}
                     required
                   />
-                  <button type="submit">Save</button>
+                  <button type="submit"> Start </button>
                 </div>
               </form>
             </div>

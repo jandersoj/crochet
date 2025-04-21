@@ -23,6 +23,7 @@ const Round = ({ round, roundIndex, setRounds, centerX, centerY, setUpdateChart 
           <Stitch
             key={`stitchround_${roundIndex}_${idx}`}
             id={stitch.id}
+            name={stitch.name}
             imageurl={stitch.image}
             stitchX={x}
             stitchY={y}
